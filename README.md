@@ -12,4 +12,7 @@
     # Install AppLoading for newer version of expo inside the project folder
     cd to-do-list-app
     expo install expo-app-loading
+
+    # Install Expo Font
+    expo install expo-font
 ```
