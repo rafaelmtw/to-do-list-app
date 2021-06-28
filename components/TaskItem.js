@@ -8,8 +8,11 @@ const TaskItem = (props) => {
   return (
     <Card style={styles.listItem}>
       <View style={styles.task}>
-        <Text>{props.title}</Text>
-        <TouchableOpacity onPress={props.onDelete.bind(this, props.id)}>
+        <Text style={styles.title}>{props.title}</Text>
+        <TouchableOpacity
+          style={styles.checklist}
+          onPress={props.onDelete.bind(this, props.id)}
+        >
           <MaterialIcons
             name="check-box-outline-blank"
             size={24}
@@ -32,6 +35,12 @@ const styles = StyleSheet.create({
   task: {
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  title: {
+    maxWidth: "90%",
+  },
+  checklist: {
+    justifyContent: "center",
   },
 });
 export default TaskItem;

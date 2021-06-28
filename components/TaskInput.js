@@ -59,15 +59,18 @@ const TaskInput = (props) => {
 
 const styles = StyleSheet.create({
   quote: {
-    margin: "10%",
+    marginHorizontal: "10%",
+    marginTop: "10%",
   },
   inputContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: 10,
   },
   input: {
-    width: "40%",
+    width: "45%",
+    maxWidth: 200,
     textAlign: "center",
     marginVertical: 20,
   },
