@@ -36,7 +36,7 @@ export default function App() {
   return (
     <View style={styles.screen}>
       <View style={{ margin: 10 }}>
-        <TitleText style={styles.title}>Upcoming tasks</TitleText>
+        <TitleText style={styles.title}>My Tasks</TitleText>
       </View>
       <FlatList
         keyExtractor={(item, index) => item.id}
@@ -49,14 +49,14 @@ export default function App() {
           />
         )}
       ></FlatList>
-      <View style={styles.button}>
-        <MainButton onPress={() => setIsAddMode(true)}>Add New Task</MainButton>
-      </View>
       <TaskInput
         visible={isAddMode}
         onAddTask={addTaskHandler}
         onCancel={cancelTaskAdditionHandler}
       />
+      <View style={styles.button}>
+        <MainButton onPress={() => setIsAddMode(true)}>Add New Task</MainButton>
+      </View>
     </View>
   );
 }
@@ -72,5 +72,6 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
+    justifyContent: "flex-end",
   },
 });

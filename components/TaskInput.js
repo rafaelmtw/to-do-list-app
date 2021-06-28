@@ -1,8 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, TextInput, Button, StyleSheet, Modal } from "react-native";
+
+import Input from "./Input";
+import Card from "./Card";
+import TitleText from "./TitleText";
+import BodyText from "./BodyText";
+import Quotes from "../assets/quotes";
+
+const generateRandomQuote = () => {
+  return Quotes[Math.floor(Math.random() * 25)];
+};
 
 const TaskInput = (props) => {
   const [enteredTask, setEnteredTask] = useState("");
+  const [randomMotivationalQuote, setRandomMotivationalQuote] =
+    useState(generateRandomQuote);
 
   const taskInputHandler = (enteredText) => {
     setEnteredTask(enteredText);
@@ -11,13 +23,24 @@ const TaskInput = (props) => {
   const addTaskHandler = () => {
     props.onAddTask(enteredTask);
     setEnteredTask("");
+    setRandomMotivationalQuote(generateRandomQuote);
   };
+
+  const resetInputHandler = () => {
+    setEnteredTask("");
+  };
+
   return (
     <Modal visible={props.visible} animationType="fade">
+      <Card style={styles.quote}>
+        <TitleText>A Motivational Quote:</TitleText>
+        <BodyText>{randomMotivationalQuote}</BodyText>
+      </Card>
       <View style={styles.inputContainer}>
-        <TextInput
-          placeholder="Input new task"
+        <Input
+          placeholder="What do you want to do?"
           style={styles.input}
+          blurOnSubmit
           onChangeText={taskInputHandler}
           value={enteredTask}
         />
@@ -35,17 +58,18 @@ const TaskInput = (props) => {
 };
 
 const styles = StyleSheet.create({
+  quote: {
+    margin: "10%",
+  },
   inputContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
   input: {
-    width: "80%",
-    borderColor: "black",
-    borderWidth: 1,
-    padding: 10,
-    marginBottom: 10,
+    width: "40%",
+    textAlign: "center",
+    marginVertical: 20,
   },
   buttonContainer: {
     flexDirection: "row",
