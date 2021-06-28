@@ -6,6 +6,7 @@ import TaskItem from "../components/TaskItem";
 import TaskInput from "../components/TaskInput";
 import MainButton from "../components/MainButton";
 import TitleText from "../components/TitleText";
+import BodyText from "../components/BodyText";
 import Colors from "../constants/colors";
 
 export default function App() {
@@ -33,11 +34,15 @@ export default function App() {
     setIsAddMode(false);
   };
 
-  return (
-    <View style={styles.screen}>
-      <View style={{ margin: 10 }}>
-        <TitleText style={styles.title}>My Tasks</TitleText>
-      </View>
+  let content = (
+    <View style={{ flex: 2, marginTop: 50, alignItems: "center" }}>
+      <TitleText>You have nothing to do!</TitleText>
+      <BodyText>Start listing your upcoming tasks</BodyText>
+    </View>
+  );
+
+  if (listTasks.length > 0) {
+    content = (
       <FlatList
         keyExtractor={(item, index) => item.id}
         data={listTasks}
@@ -49,6 +54,15 @@ export default function App() {
           />
         )}
       ></FlatList>
+    );
+  }
+
+  return (
+    <View style={styles.screen}>
+      <View style={{ margin: 10 }}>
+        <TitleText style={styles.title}>My Tasks</TitleText>
+      </View>
+      {content}
       <TaskInput
         visible={isAddMode}
         onAddTask={addTaskHandler}
